@@ -69,8 +69,12 @@ const row = document.createElement("tr");
 
 row.innerHTML = `
 <td>${request.name}</td>
-<td>${request.phone}</td>
+<td>
+${request.phone}
+<button onclick="copyPhone('${request.phone}')">Copy</button>
+</td>
 <td>${request.location}</td>
+<td>${request.plan}</td>
 <td>${request.status}</td>
 <td>
 <button onclick="markServiced('${request.id}')">Mark Serviced</button>
@@ -91,5 +95,13 @@ await supabaseClient
 .eq("id", id)
 
 location.reload()
+
+}
+
+function copyPhone(phone){
+
+navigator.clipboard.writeText(phone);
+
+alert("Phone number copied: " + phone);
 
 }
